@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import {useDispatch, useSelector} from 'react-redux';
 import {setSelectedCategory} from '../states/threads/reducer';
 
-// Styled Components
 const FilterWrapper = styled.div`
   background-color: #fff;
   padding: 1.5rem;

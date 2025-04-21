@@ -7,7 +7,142 @@ import CommentForm from '../components/CommentForm';
 import {formatDistanceToNow} from 'date-fns';
 import {id as idLocale} from 'date-fns/locale';
 import parse from 'html-react-parser';
+import styled from 'styled-components';
 
+// Styled Components
+const PageWrapper = styled.div`
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+`;
+
+const BackButton = styled.button`
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-bottom: 20px;
+
+  &:hover {
+    background-color: #45a049;
+  }
+`;
+
+const ThreadDetailWrapper = styled.div`
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+`;
+
+const ThreadCategory = styled.div`
+  background-color: #0077cc;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  display: inline-block;
+  margin-bottom: 1rem;
+`;
+
+const ThreadTitle = styled.h1`
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+`;
+
+const ThreadMeta = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: left;
+  margin-bottom: 20px;
+  font-size: 0.875rem;
+  color: #777;
+
+  @media (max-width: 768px) {
+    font-size: 0.75rem;
+  }
+
+  @media (max-width: 500px) {
+    display: block;
+  }
+`;
+
+const ThreadOwner = styled.div`
+  display: flex;
+  align-items: center;
+
+  @media (max-width: 500px) {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+`;
+
+const Avatar = styled.img`
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  margin-right: 8px;
+`;
+
+const ThreadDate = styled.span`
+  font-size: 14px;
+  color: #888;
+  margin-right: 1rem;
+
+  @media (max-width: 500px) {
+    width: 80%;
+  }
+`;
+
+const ThreadBody = styled.div`
+  font-size: 1rem;
+  margin: 1rem 0;
+  color: #555;
+  line-height: 1.6;
+  white-space: pre-line;
+`;
+
+const CommentsSection = styled.div`
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #ddd;
+`;
+
+const LoginPrompt = styled.div`
+  margin-top: 20px;
+  font-size: 0.95rem;
+
+  a {
+    color: #0077cc;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+`;
+
+const LoadingMessage = styled.div`
+  text-align: center;
+  padding: 40px;
+`;
+
+const ErrorMessage = styled.div`
+  text-align: center;
+  color: red;
+  font-weight: bold;
+  padding: 40px;
+`;
+
+// Component
 function ThreadDetailPage() {
   const {id} = useParams();
   const navigate = useNavigate();
@@ -25,62 +160,57 @@ function ThreadDetailPage() {
   };
 
   if (isLoading && !threadDetail) {
-    return <div className="loading-message">Loading thread...</div>;
+    return <LoadingMessage>Loading thread...</LoadingMessage>;
   }
 
   if (!threadDetail) {
-    return <div className="error-message">Thread tidak ditemukan</div>;
+    return <ErrorMessage>Thread tidak ditemukan</ErrorMessage>;
   }
 
   return (
-    <div className="thread-detail-page">
-      <button onClick={handleBack} className="back-button">
-        &larr; Kembali
-      </button>
+    <PageWrapper>
+      <BackButton onClick={handleBack}>&larr; Kembali</BackButton>
 
-      <div className="thread-detail">
-        <div className="thread-category">
+      <ThreadDetailWrapper>
+        <ThreadCategory>
           {threadDetail.category ? `#${threadDetail.category}` : 'Uncategorized'}
-        </div>
+        </ThreadCategory>
 
-        <h1 className="thread-title">{threadDetail.title}</h1>
+        <ThreadTitle>{threadDetail.title}</ThreadTitle>
 
-        <div className="thread-meta">
-          <div className="thread-owner">
+        <ThreadMeta>
+          <ThreadOwner>
             {threadDetail.owner.avatar && (
-              <img
+              <Avatar
                 src={threadDetail.owner.avatar}
                 alt={threadDetail.owner.name}
-                className="avatar"
               />
             )}
             <span>{threadDetail.owner.name}</span>
-          </div>
-          <span className="thread-date">
+          </ThreadOwner>
+          <ThreadDate>
             {formatDistanceToNow(new Date(threadDetail.createdAt), {
               addSuffix: true,
               locale: idLocale,
             })}
-          </span>
-        </div>
+          </ThreadDate>
+        </ThreadMeta>
 
-        <div className="thread-body">
-          {parse(threadDetail.body)}
-        </div>
-      </div>
+        <ThreadBody>{parse(threadDetail.body)}</ThreadBody>
+      </ThreadDetailWrapper>
 
-      <div className="thread-comments-section">
+      <CommentsSection>
         <CommentList comments={threadDetail.comments} />
 
         {isAuthenticated ? (
           <CommentForm threadId={id} />
         ) : (
-          <div className="login-prompt">
+          <LoginPrompt>
             <p>Silakan <a href="/login">login</a> untuk menambahkan komentar</p>
-          </div>
+          </LoginPrompt>
         )}
-      </div>
-    </div>
+      </CommentsSection>
+    </PageWrapper>
   );
 }
 

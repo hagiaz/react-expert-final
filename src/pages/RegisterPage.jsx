@@ -5,7 +5,6 @@ import {Link, useNavigate} from 'react-router-dom';
 import {registerUser} from '../states/authUser/action';
 import {clearAuthError} from '../states/authUser/reducer';
 
-// Styled Components
 const PageWrapper = styled.div`
   max-width: 400px;
   margin: 2rem auto;

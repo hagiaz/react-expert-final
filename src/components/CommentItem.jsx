@@ -15,11 +15,20 @@ const CommentHeader = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
+
+  @media (max-width: 500px) {
+    display: block;
+  }
 `;
 
 const CommentOwner = styled.div`
   display: flex;
   align-items: center;
+
+  @media (max-width: 500px) {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
 `;
 
 const CommentContent = styled.div`
