@@ -1,0 +1,593 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+  background-color: #f7f7f7;
+  color: #333;
+  line-height: 1.6;
+  padding: 1rem;
+}
+
+a {
+  text-decoration: none;
+  color: #0077cc;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0077cc;
+  padding: 0.75rem 1rem;
+  color: white;
+  font-size: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand a {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
+
+.navbar-menu {
+  display: flex;
+  gap: 1rem;
+}
+
+.navbar-item {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: background-color 0.3s;
+  text-align: center;
+}
+
+.navbar-item:hover {
+  background-color: #005fa3;
+}
+
+.page-header {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.category-filter {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-top: 1rem;
+}
+
+.category-filter h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.category-list {
+  display: flex;
+  gap: 1rem;
+  overflow-x: scroll;
+}
+
+.category-item {
+  background-color: #ddd;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.category-item.active {
+  background-color: #0077cc;
+  color: white;
+}
+
+.category-item:hover {
+  background-color: #005fa3;
+  color: white;
+}
+
+.login-page {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.login-page h1 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.register-page h1 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  color: #333;
+  background-color: #f9f9f9;
+  box-sizing: border-box;
+}
+
+.form-group input:focus {
+  border-color: #0077cc;
+  outline: none;
+}
+
+button {
+  padding: 1rem;
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #005fa3;
+}
+
+p {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+p a {
+  color: #0077cc;
+  text-decoration: none;
+}
+
+p a:hover {
+  text-decoration: underline;
+}
+
+/* Thread List */
+.thread-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.thread-item {
+  background-color: #fff;
+  padding: 1.5rem;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.thread-category {
+  background-color: #0077cc;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.thread-title h3 {
+  font-size: 1.75rem;
+  color: #333;
+  margin: 0;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.thread-title h3:hover {
+  color: #0077cc;
+}
+
+.thread-body {
+  font-size: 1rem;
+  margin: 1rem 0;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  white-space: pre-line;
+}
+
+.thread-date,
+.thread-comments {
+  margin-right: 1rem;
+}
+
+.thread-detail-page {
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.back-button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.back-button:hover {
+  background-color: #45a049;
+}
+
+.thread-detail {
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.thread-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.thread-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 0.875rem;
+  color: #777;
+}
+
+.thread-owner {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.thread-date {
+  font-size: 14px;
+  color: #888;
+}
+
+.thread-comments-section {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #ddd;
+}
+
+.comment-form {
+  background-color: #fff;
+  padding: 20px;
+  margin-top: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.comment-form h3 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.comment-form .form-group {
+  margin-bottom: 20px;
+}
+
+.comment-form textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s ease;
+  min-height: 100px;
+  resize: vertical;
+}
+
+.comment-form textarea:focus {
+  border-color: #4CAF50;
+}
+
+.comment-form textarea::placeholder {
+  color: #888;
+}
+
+.comment-form button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.comment-form button:hover {
+  background-color: #45a049;
+}
+
+.comment-form button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.comment-list {
+  margin-bottom: 20px;
+}
+
+.comment-list h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.comment-item {
+  padding: 15px;
+  background-color: #f4f4f4;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.comment-owner {
+  display: flex;
+  align-items: center;
+}
+
+.owner-name {
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.comment-date {
+  font-size: 12px;
+  color: #888;
+}
+
+.comment-content {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.login-prompt {
+  background-color: #f9f9f9;
+  padding: 20px;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.login-prompt a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+
+.login-prompt a:hover {
+  text-decoration: underline;
+}
+
+.create-thread-page {
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.create-thread-page h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.create-thread-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.create-thread-form div {
+  display: flex;
+  flex-direction: column;
+}
+
+.create-thread-form label {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.create-thread-form input,
+.create-thread-form textarea {
+  padding: 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.create-thread-form input:focus,
+.create-thread-form textarea:focus {
+  border-color: #4CAF50;
+}
+
+.create-thread-form input::placeholder,
+.create-thread-form textarea::placeholder {
+  color: #888;
+}
+
+.create-thread-form button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.create-thread-form button:hover {
+  background-color: #45a049;
+}
+
+.create-thread-form button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  .navbar-menu {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .navbar-item {
+    padding: 0.5rem;
+    text-align: center;
+    width: 100%;
+  }
+
+  .navbar-brand {
+    width: 100%;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .login-page {
+    padding: 1.5rem;
+  }
+
+  .login-page h1 {
+    font-size: 1.5rem;
+  }
+
+  .form-group input {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  button {
+    padding: 0.75rem;
+    font-size: 1rem;
+  }
+
+  .container {
+    padding: 1rem;
+  }
+
+  .page-header h1 {
+    font-size: 2rem;
+  }
+
+  .category-filter {
+    padding: 1rem;
+  }
+
+  .category-item {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .thread-item {
+    padding: 1rem;
+  }
+
+  .thread-category {
+    font-size: 0.875rem;
+    padding: 0.25rem 0.75rem;
+  }
+
+  .thread-title h3 {
+    font-size: 1.5rem;
+  }
+
+  .thread-body {
+    font-size: 0.9rem;
+  }
+
+  .thread-meta {
+    font-size: 0.75rem;
+  }
+}
