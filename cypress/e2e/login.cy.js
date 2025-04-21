@@ -46,8 +46,8 @@ describe('Login spec', () => {
     cy.get('button[type="submit"]').click();
  
     // Memverifikasi pesan error ditampilkan
-    cy.get('.error-message').should('be.visible');
-    cy.get('.error-message').should('contain', 'email or password is wrong');
+    cy.get('.sc-gDpztx').should('be.visible');
+    cy.get('.sc-gDpztx').should('contain', 'email or password is wrong');
   });
 
   it('should display loading state when submitting form', () => {
@@ -79,7 +79,7 @@ describe('Login spec', () => {
     cy.url().should('eq', 'http://localhost:5173/');
     
     // Memverifikasi elemen-elemen di homepage
-    cy.get('.category-filter').should('exist');
+    cy.get('.sc-Qotzb').should('exist');
     cy.get('.thread-list').should('exist');
   });
 
