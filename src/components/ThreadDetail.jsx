@@ -1,51 +1,89 @@
-import React, {useEffect} from 'react';
-import {useParams} from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
-import {fetchThreadDetail} from '../states/threads/action';
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchThreadDetail } from '../states/threads/action';
 import CommentForm from '../components/CommentForm';
 import CommentList from '../components/CommentList';
+import styled from 'styled-components';
+
+const ThreadOwner = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const OwnerAvatar = styled.img`
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+`;
+
+const OwnerName = styled.span`
+  font-weight: bold;
+`;
+
+const ThreadMeta = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 0.875rem;
+  color: #777;
+  
+  @media (max-width: 768px) {
+    font-size: 0.75rem;
+  }
+`;
 
 function DetailPage() {
-  const {id} = useParams();
+  const { id } = useParams();
   const dispatch = useDispatch();
-  const {detailThread} = useSelector((state) => state.threads);
-  const {isLoading} = useSelector((state) => state.shared);
-  const {isAuthenticated} = useSelector((state) => state.auth);
+  const { detailThread } = useSelector((state) => state.threads);
+  const { isLoading } = useSelector((state) => state.shared);
+  const { isAuthenticated } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(fetchThreadDetail(id));
   }, [id, dispatch]);
 
   if (isLoading) {
-    return <div className="loading-bar">Loading...</div>;
+    return <LoadingBar>Loading...</LoadingBar>;
   }
 
   if (!detailThread) {
-    return <div>Thread tidak ditemukan</div>;
+    return <NotFoundMessage>Thread tidak ditemukan</NotFoundMessage>;
   }
 
   return (
-    <div className="detail-page">
-      <h1>{detailThread.title}</h1>
-      <div className="thread-owner">
-        <img src={detailThread.owner.avatar} alt={detailThread.owner.name} />
-        <span>{detailThread.owner.name}</span>
-      </div>
-      <div className="thread-content" dangerouslySetInnerHTML={{__html: detailThread.body}} />
-      <div className="thread-meta">
-        <span>Created: {new Date(detailThread.createdAt).toLocaleString()}</span>
-        <span>Category: {detailThread.category || 'Uncategorized'}</span>
-      </div>
+    <DetailPageContainer>
+      <ThreadTitle>{detailThread.title}</ThreadTitle>
+      
+      <ThreadOwner>
+        <OwnerAvatar 
+          src={detailThread.owner.avatar} 
+          alt={detailThread.owner.name} 
+        />
+        <OwnerName>{detailThread.owner.name}</OwnerName>
+      </ThreadOwner>
+      
+      <ThreadContent 
+        dangerouslySetInnerHTML={{ __html: detailThread.body }} 
+      />
+      
+      <ThreadMeta>
+        <MetaItem>Created: {new Date(detailThread.createdAt).toLocaleString()}</MetaItem>
+        <MetaItem>Category: {detailThread.category || 'Uncategorized'}</MetaItem>
+      </ThreadMeta>
 
-      <h2>Comments ({detailThread.comments.length})</h2>
+      <CommentsTitle>Comments ({detailThread.comments.length})</CommentsTitle>
       <CommentList comments={detailThread.comments} />
 
       {isAuthenticated ? (
         <CommentForm threadId={id} />
       ) : (
-        <p>Silahkan login untuk menambahkan komentar</p>
+        <LoginPrompt>Silahkan login untuk menambahkan komentar</LoginPrompt>
       )}
-    </div>
+    </DetailPageContainer>
   );
 }
 

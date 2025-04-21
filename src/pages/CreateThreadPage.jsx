@@ -1,7 +1,85 @@
-import React, {useState} from 'react';
-import {useDispatch} from 'react-redux';
-import {useNavigate} from 'react-router-dom';
-import {createThread} from '../states/threads/action';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { createThread } from '../states/threads/action';
+import styled from 'styled-components';
+
+const PageContainer = styled.div`
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+`;
+
+const PageTitle = styled.h2`
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+`;
+
+const ThreadForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+
+const FormField = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Label = styled.label`
+  font-size: 16px;
+  margin-bottom: 8px;
+`;
+
+const InputBase = `
+  padding: 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s ease;
+  
+  &:focus {
+    border-color: #4CAF50;
+  }
+  
+  &::placeholder {
+    color: #888;
+  }
+`;
+
+const Input = styled.input`
+  ${InputBase}
+`;
+
+const TextArea = styled.textarea`
+  ${InputBase}
+`;
+
+const SubmitButton = styled.button`
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  
+  &:hover {
+    background-color: #45a049;
+  }
+  
+  &:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+`;
 
 function CreateThreadPage() {
   const dispatch = useDispatch();
@@ -14,7 +92,7 @@ function CreateThreadPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const newThreadId = await dispatch(createThread({title, body, category}));
+    const newThreadId = await dispatch(createThread({ title, body, category }));
 
     if (newThreadId) {
       navigate(`/threads/${newThreadId}`);
@@ -24,12 +102,12 @@ function CreateThreadPage() {
   };
 
   return (
-    <div className="create-thread-page">
-      <h2>Buat Thread Baru</h2>
-      <form onSubmit={handleSubmit} className="create-thread-form">
-        <div>
-          <label htmlFor="title">Judul</label>
-          <input
+    <PageContainer>
+      <PageTitle>Buat Thread Baru</PageTitle>
+      <ThreadForm onSubmit={handleSubmit}>
+        <FormField>
+          <Label htmlFor="title">Judul</Label>
+          <Input
             type="text"
             id="title"
             placeholder="Judul thread"
@@ -37,20 +115,20 @@ function CreateThreadPage() {
             onChange={(e) => setTitle(e.target.value)}
             required
           />
-        </div>
-        <div>
-          <label htmlFor="category">Kategori</label>
-          <input
+        </FormField>
+        <FormField>
+          <Label htmlFor="category">Kategori</Label>
+          <Input
             type="text"
             id="category"
             placeholder="Kategori (opsional)"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
           />
-        </div>
-        <div>
-          <label htmlFor="body">Isi Thread</label>
-          <textarea
+        </FormField>
+        <FormField>
+          <Label htmlFor="body">Isi Thread</Label>
+          <TextArea
             id="body"
             placeholder="Tulis isi thread di sini..."
             value={body}
@@ -58,10 +136,10 @@ function CreateThreadPage() {
             rows={8}
             required
           />
-        </div>
-        <button type="submit">Buat Thread</button>
-      </form>
-    </div>
+        </FormField>
+        <SubmitButton type="submit">Buat Thread</SubmitButton>
+      </ThreadForm>
+    </PageContainer>
   );
 }
 

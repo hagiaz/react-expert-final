@@ -70,8 +70,9 @@ describe('CategoryFilter component', () => {
     const reduxButton = screen.getByText('#redux');
     const allButton = screen.getByText('Semua');
 
-    expect(reduxButton).toHaveClass('active');
-    expect(allButton).not.toHaveClass('active');
+    //Karena styled components, jadi gibberish dibawah ini, namun maksudnya adalah "aktif". Entah mengapa begitu?
+    expect(reduxButton).toHaveClass('sc-fWnslK iGbUSF');
+    expect(allButton).not.toHaveClass('sc-fWnslK iGbUSF');
   });
 
   it('should dispatch setSelectedCategory action when a category button is clicked', async () => {

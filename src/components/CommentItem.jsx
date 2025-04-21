@@ -1,29 +1,70 @@
+import styled from 'styled-components';
 import React from 'react';
 import {formatDistanceToNow} from 'date-fns';
 import {id} from 'date-fns/locale';
 import parse from 'html-react-parser';
 
+const CommentWrapper = styled.div`
+  padding: 15px;
+  background-color: #f4f4f4;
+  margin-bottom: 10px;
+  border-radius: 4px;
+`;
+
+const CommentHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+`;
+
+const CommentOwner = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const CommentContent = styled.div`
+  font-size: 14px;
+  line-height: 1.5;
+`;
+
+const OwnerName = styled.span`
+  font-weight: bold;
+  margin-left: 10px;
+`;
+
+const CommentDate = styled.span`
+  font-size: 12px;
+  color: #888;
+`;
+
+const CommentAvatar = styled.img`
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+`;
+
 function CommentItem({comment}) {
   return (
-    <div className="comment-item">
-      <div className="comment-header">
-        <div className="comment-owner">
+    <CommentWrapper>
+      <CommentHeader>
+        <CommentOwner>
           {comment.owner.avatar && (
-            <img src={comment.owner.avatar} alt={comment.owner.name} className="avatar" />
+            <CommentAvatar src={comment.owner.avatar} alt={comment.owner.name} />
           )}
-          <span className="owner-name">{comment.owner.name}</span>
-        </div>
-        <span className="comment-date">
+          <OwnerName>{comment.owner.name}</OwnerName>
+        </CommentOwner>
+        <CommentDate>
           {formatDistanceToNow(new Date(comment.createdAt), {
             addSuffix: true,
             locale: id,
           })}
-        </span>
-      </div>
-      <div className="comment-content">
+        </CommentDate>
+      </CommentHeader>
+      <CommentContent>
         {parse(comment.content)}
-      </div>
-    </div>
+      </CommentContent>
+    </CommentWrapper>
   );
 }
 
