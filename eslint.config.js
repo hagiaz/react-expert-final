@@ -3,7 +3,6 @@ import globals from 'globals';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 import {FlatCompat} from '@eslint/eslintrc';
-import pluginCypress from 'cypress/flat'
 
 const compat = new FlatCompat();
 

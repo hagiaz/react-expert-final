@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import { loginUser } from '../states/authUser/action';
-import { clearAuthError } from '../states/authUser/reducer';
+import React, {useState, useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {Link, useNavigate} from 'react-router-dom';
+import {loginUser} from '../states/authUser/action';
+import {clearAuthError} from '../states/authUser/reducer';
 import styled from 'styled-components';
 
 const LoginContainer = styled.div`
@@ -108,8 +108,8 @@ function LoginPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { isAuthenticated, error } = useSelector((state) => state.auth);
-  const { isLoading } = useSelector((state) => state.shared);
+  const {isAuthenticated, error} = useSelector((state) => state.auth);
+  const {isLoading} = useSelector((state) => state.shared);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -123,7 +123,7 @@ function LoginPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const success = await dispatch(loginUser({ email, password }));
+    const success = await dispatch(loginUser({email, password}));
     if (success) {
       navigate('/');
     }

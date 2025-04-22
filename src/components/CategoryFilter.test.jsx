@@ -70,7 +70,7 @@ describe('CategoryFilter component', () => {
     const reduxButton = screen.getByText('#redux');
     const allButton = screen.getByText('Semua');
 
-    //Karena styled components, jadi gibberish dibawah ini, namun maksudnya adalah "aktif". Entah mengapa begitu?
+    // Karena styled components, jadi gibberish dibawah ini, namun maksudnya adalah "aktif". Entah mengapa begitu?
     expect(reduxButton).toHaveClass('sc-fWnslK iGbUSF');
     expect(allButton).not.toHaveClass('sc-fWnslK iGbUSF');
   });

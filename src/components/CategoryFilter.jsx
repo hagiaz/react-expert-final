@@ -27,8 +27,8 @@ const CategoryList = styled.div`
 `;
 
 const CategoryButton = styled.button`
-  background-color: ${({ active }) => (active ? '#0077cc' : '#ddd')};
-  color: ${({ active }) => (active ? 'white' : 'black')};
+  background-color: ${({active}) => (active ? '#0077cc' : '#ddd')};
+  color: ${({active}) => (active ? 'white' : 'black')};
   border: none;
   padding: 0.5rem 1rem;
   border-radius: 6px;

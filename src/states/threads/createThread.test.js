@@ -7,18 +7,18 @@
  *   - Harus mengembalikan null jika terjadi error saat membuat thread
  */
 
-import { describe, it, vi, beforeEach, afterEach, expect } from 'vitest';
-import { createThread } from './action';
+import {describe, it, vi, beforeEach, afterEach, expect} from 'vitest';
+import {createThread} from './action';
 import api from '../../services/api';
-import { setLoading } from '../shared/action';
-import { addThread } from './reducer';
+import {setLoading} from '../shared/action';
+import {addThread} from './reducer';
 
 vi.mock('../../services/api');
 vi.mock('../shared/action', () => ({
-  setLoading: vi.fn((isLoading) => ({ type: 'shared/setLoading', payload: isLoading })),
+  setLoading: vi.fn((isLoading) => ({type: 'shared/setLoading', payload: isLoading})),
 }));
 vi.mock('./reducer', () => ({
-  addThread: vi.fn((thread) => ({ type: 'threads/addThread', payload: thread })),
+  addThread: vi.fn((thread) => ({type: 'threads/addThread', payload: thread})),
 }));
 
 describe('createThread thunk', () => {
@@ -65,7 +65,7 @@ describe('createThread thunk', () => {
 
     expect(dispatch).toHaveBeenCalledWith(setLoading(true));
     expect(dispatch).toHaveBeenCalledWith(setLoading(false));
-    expect(dispatch).not.toHaveBeenCalledWith(expect.objectContaining({ type: addThread.type }));
+    expect(dispatch).not.toHaveBeenCalledWith(expect.objectContaining({type: addThread.type}));
     expect(result).toBeNull();
   });
 });

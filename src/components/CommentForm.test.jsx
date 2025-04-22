@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /**
  * Skenario pengujian komponen Comment Form
  *

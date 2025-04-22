@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchThreadDetail } from '../states/threads/action';
+import React, {useEffect} from 'react';
+import {useParams} from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
+import {fetchThreadDetail} from '../states/threads/action';
 import CommentForm from '../components/CommentForm';
 import CommentList from '../components/CommentList';
 import styled from 'styled-components';
@@ -36,11 +36,11 @@ const ThreadMeta = styled.div`
 `;
 
 function DetailPage() {
-  const { id } = useParams();
+  const {id} = useParams();
   const dispatch = useDispatch();
-  const { detailThread } = useSelector((state) => state.threads);
-  const { isLoading } = useSelector((state) => state.shared);
-  const { isAuthenticated } = useSelector((state) => state.auth);
+  const {detailThread} = useSelector((state) => state.threads);
+  const {isLoading} = useSelector((state) => state.shared);
+  const {isAuthenticated} = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(fetchThreadDetail(id));
@@ -57,19 +57,19 @@ function DetailPage() {
   return (
     <DetailPageContainer>
       <ThreadTitle>{detailThread.title}</ThreadTitle>
-      
+
       <ThreadOwner>
-        <OwnerAvatar 
-          src={detailThread.owner.avatar} 
-          alt={detailThread.owner.name} 
+        <OwnerAvatar
+          src={detailThread.owner.avatar}
+          alt={detailThread.owner.name}
         />
         <OwnerName>{detailThread.owner.name}</OwnerName>
       </ThreadOwner>
-      
-      <ThreadContent 
-        dangerouslySetInnerHTML={{ __html: detailThread.body }} 
+
+      <ThreadContent
+        dangerouslySetInnerHTML={{__html: detailThread.body}}
       />
-      
+
       <ThreadMeta>
         <MetaItem>Created: {new Date(detailThread.createdAt).toLocaleString()}</MetaItem>
         <MetaItem>Category: {detailThread.category || 'Uncategorized'}</MetaItem>

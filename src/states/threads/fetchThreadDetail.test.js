@@ -5,18 +5,18 @@
  *   - Harus hanya dispatch loading action dan bukan setThreadDetail jika gagal
 */
 
-import { describe, it, vi, beforeEach, afterEach, expect } from 'vitest';
-import { fetchThreadDetail } from './action';
+import {describe, it, vi, beforeEach, afterEach, expect} from 'vitest';
+import {fetchThreadDetail} from './action';
 import api from '../../services/api';
-import { setLoading } from '../shared/action';
-import { setThreadDetail } from './reducer';
+import {setLoading} from '../shared/action';
+import {setThreadDetail} from './reducer';
 
 vi.mock('../../services/api');
 vi.mock('../shared/action', () => ({
-  setLoading: vi.fn((isLoading) => ({ type: 'shared/setLoading', payload: isLoading })),
+  setLoading: vi.fn((isLoading) => ({type: 'shared/setLoading', payload: isLoading})),
 }));
 vi.mock('./reducer', () => ({
-  setThreadDetail: vi.fn((detail) => ({ type: 'threads/setThreadDetail', payload: detail })),
+  setThreadDetail: vi.fn((detail) => ({type: 'threads/setThreadDetail', payload: detail})),
 }));
 
 describe('fetchThreadDetail thunk', () => {
@@ -62,6 +62,6 @@ describe('fetchThreadDetail thunk', () => {
 
     expect(dispatch).toHaveBeenCalledWith(setLoading(true));
     expect(dispatch).toHaveBeenCalledWith(setLoading(false));
-    expect(dispatch).not.toHaveBeenCalledWith(expect.objectContaining({ type: setThreadDetail.type }));
+    expect(dispatch).not.toHaveBeenCalledWith(expect.objectContaining({type: setThreadDetail.type}));
   });
 });

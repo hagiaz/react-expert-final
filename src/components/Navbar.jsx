@@ -95,11 +95,11 @@ function Navbar() {
       <Brand>
         <Link to="/">Forum Diskusi - Web App</Link>
       </Brand>
-  
+
       <Menu>
         {isAuthenticated ? (
           <>
-            <span style={{ alignSelf: 'center' }}>Halo, {user?.name}</span>
+            <span style={{alignSelf: 'center'}}>Halo, {user?.name}</span>
             <NavItem to="/create-thread">Buat Thread</NavItem>
             <LogoutButton onClick={handleLogout}>Logout</LogoutButton>
           </>
@@ -112,7 +112,6 @@ function Navbar() {
       </Menu>
     </NavbarWrapper>
   );
-  
 }
 
 export default Navbar;
