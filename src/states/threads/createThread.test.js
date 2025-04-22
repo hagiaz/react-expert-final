@@ -41,7 +41,7 @@ describe('createThread thunk', () => {
     console.error.mockRestore();
   });
 
-  it('should dispatch actions correctly and return thread ID on success', async () => {
+  it('should dispatch actions correctly and return thread ID if on success', async () => {
     api.post.mockResolvedValue({
       data: {
         data: {
@@ -64,7 +64,7 @@ describe('createThread thunk', () => {
     const result = await createThread(newThread)(dispatch);
 
     expect(dispatch).toHaveBeenCalledWith(setLoading(true));
-    expect(dispatch).not.toHaveBeenCalledWith(setLoading(false));
+    expect(dispatch).toHaveBeenCalledWith(setLoading(false));
     expect(dispatch).not.toHaveBeenCalledWith(expect.objectContaining({ type: addThread.type }));
     expect(result).toBeNull();
   });
