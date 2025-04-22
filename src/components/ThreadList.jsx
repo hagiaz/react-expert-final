@@ -1,9 +1,16 @@
+import styled from 'styled-components';
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchThreads} from '../states/threads/action';
 import {fetchUsers} from '../states/users/action';
 import ThreadItem from './ThreadItem';
 import CategoryFilter from './CategoryFilter';
+
+const ThreadListWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+`;
 
 function ThreadList() {
   const dispatch = useDispatch();
@@ -29,7 +36,7 @@ function ThreadList() {
   }
 
   return (
-    <div className="thread-list-container">
+    <ThreadListWrapper>
       <CategoryFilter />
       <div className="thread-list">
         {filteredThreads.length > 0 ? (
@@ -47,7 +54,7 @@ function ThreadList() {
           </div>
         )}
       </div>
-    </div>
+    </ThreadListWrapper>
   );
 }
 

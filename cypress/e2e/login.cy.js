@@ -46,8 +46,8 @@ describe('Login spec', () => {
     cy.get('button[type="submit"]').click();
  
     // Memverifikasi pesan error ditampilkan
-    cy.get('.sc-lixPIL').should('be.visible');
-    cy.get('.sc-lixPIL').should('contain', 'email or password is wrong');
+    cy.get('.container').should('be.visible');
+    cy.get('.container').should('contain', 'email or password is wrong');
   });
 
   it('should display loading state when submitting form', () => {
