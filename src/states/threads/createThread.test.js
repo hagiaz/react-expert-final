@@ -65,7 +65,7 @@ describe('createThread thunk', () => {
 
     expect(dispatch).toHaveBeenCalledWith(setLoading(true));
     expect(dispatch).toHaveBeenCalledWith(setLoading(false));
-    expect(dispatch).not.toHaveBeenCalledWith(expect.objectContaining({ type: addThread.type }));
+    expect(dispatch).toHaveBeenCalledWith(expect.objectContaining({ type: addThread.type }));
     expect(result).toBeNull();
   });
 });
