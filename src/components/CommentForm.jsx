@@ -27,19 +27,22 @@ const TextArea = styled.textarea`
   width: 100%;
   padding: 12px;
   font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 10px;
   outline: none;
-  transition: border-color 0.3s ease;
-  min-height: 100px;
+  transition: border-color 0.12s ease, transform 0.12s ease;
+  min-height: 120px;
   resize: vertical;
+  background: rgba(255,255,255,0.02);
+  color: var(--text);
 
   &:focus {
-    border-color: #4CAF50;
+    border-color: rgba(79,159,255,0.9);
+    transform: translateY(-1px);
   }
 
   &::placeholder {
-    color: #888;
+    color: var(--muted);
   }
 `;
 
