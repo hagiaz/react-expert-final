@@ -4,11 +4,12 @@ import {useDispatch, useSelector} from 'react-redux';
 import {createComment} from '../states/comments/action';
 
 const FormContainer = styled.div`
-  background-color: #fff;
-  padding: 20px;
-  margin-top: 30px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  padding: 18px;
+  margin-top: 28px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(255,255,255,0.03);
 `;
 
 const FormTitle = styled.h3`
@@ -43,23 +44,11 @@ const TextArea = styled.textarea`
 `;
 
 const SubmitButton = styled.button`
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  padding: 12px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
+  background: linear-gradient(90deg,var(--accent),var(--accent-2));
+  color: #02223a;border:none;padding:10px 16px;font-size:15px;cursor:pointer;border-radius:10px;transition:transform .12s ease,opacity .12s ease
 
-  &:hover {
-    background-color: #45a049;
-  }
-
-  &:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
+  &:hover{transform:translateY(-2px)}
+  &:disabled{opacity:0.55;cursor:not-allowed}
 `;
 
 function CommentForm({threadId}) {

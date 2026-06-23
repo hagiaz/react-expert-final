@@ -6,101 +6,49 @@ import {clearAuthError} from '../states/authUser/reducer';
 import styled from 'styled-components';
 
 const LoginContainer = styled.div`
-  max-width: 400px;
+  max-width: 420px;
   margin: 2rem auto;
-  padding: 2rem;
-  background-color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+  padding: 18px;
   text-align: center;
+`;
 
-  @media (max-width: 768px) {
-    padding: 1.5rem;
-  }
+const LoginCard = styled.div`
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  box-shadow: var(--shadow);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid rgba(255,255,255,0.03);
 `;
 
 const LoginTitle = styled.h1`
-  font-size: 2rem;
-  color: #333;
-  margin-bottom: 1.5rem;
-
-  @media (max-width: 768px) {
-    font-size: 1.5rem;
-  }
+  font-size: 1.6rem;
+  color: var(--text);
+  margin-bottom: 1rem;
 `;
 
 const ErrorMessage = styled.div`
-  color: #d32f2f;
-  background-color: #ffebee;
+  color: #ff9b9b;
+  background-color: rgba(255,120,120,0.06);
   padding: 10px;
-  border-radius: 4px;
+  border-radius: 8px;
   margin-bottom: 1rem;
 `;
 
-const FormGroup = styled.div`
-  margin-bottom: 1rem;
-  text-align: left;
-`;
+const FormGroup = styled.div`margin-bottom:1rem;text-align:left`;
 
-const FormLabel = styled.label`
-  display: block;
-  font-size: 1rem;
-  color: #555;
-  margin-bottom: 0.5rem;
-`;
+const FormLabel = styled.label`display:block;font-size:0.95rem;color:var(--muted);margin-bottom:0.5rem`;
 
 const FormInput = styled.input`
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  font-size: 1rem;
-  color: #333;
-  background-color: #f9f9f9;
-  box-sizing: border-box;
-
-  &:focus {
-    border-color: #0077cc;
-    outline: none;
-  }
+  width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:rgba(255,255,255,0.02);color:var(--text);box-sizing:border-box;transition:transform .12s ease
+  &:focus{border-color:rgba(79,159,255,0.9);transform:translateY(-1px)}
 `;
 
 const SubmitButton = styled.button`
-  background-color: #0077cc;
-  color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  width: 100%;
-  margin-top: 1rem;
-
-  &:hover {
-    background-color: #005fa3;
-  }
-
-  &:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-  }
+  width:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#02223a;border:none;padding:.7rem 1rem;border-radius:10px;font-weight:700;margin-top:0.75rem;cursor:pointer;transition:transform .12s ease
+  &:hover{transform:translateY(-3px)}&:disabled{opacity:.6}
 `;
 
-const RegisterLink = styled.p`
-  margin-top: 1.5rem;
-  font-size: 0.9rem;
-
-  a {
-    color: #0077cc;
-    text-decoration: none;
-    font-weight: bold;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-`;
+const RegisterLink = styled.p`margin-top:1rem;font-size:0.95rem;color:var(--muted);a{color:var(--accent);text-decoration:none;font-weight:700}`;
 
 function LoginPage() {
   const [email, setEmail] = useState('');
@@ -131,9 +79,10 @@ function LoginPage() {
 
   return (
     <LoginContainer>
-      <LoginTitle>Login</LoginTitle>
-      {error && <ErrorMessage>{error}</ErrorMessage>}
-      <form onSubmit={handleSubmit}>
+      <LoginCard>
+        <LoginTitle>Login</LoginTitle>
+        {error && <ErrorMessage>{error}</ErrorMessage>}
+        <form onSubmit={handleSubmit}>
         <FormGroup>
           <FormLabel htmlFor="email">Email</FormLabel>
           <FormInput
@@ -157,7 +106,8 @@ function LoginPage() {
         <SubmitButton type="submit" disabled={isLoading}>
           {isLoading ? 'Loading...' : 'Login'}
         </SubmitButton>
-      </form>
+        </form>
+      </LoginCard>
       <RegisterLink>
         Belum punya akun? <Link to="/register">Daftar di sini</Link>
       </RegisterLink>

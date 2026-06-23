@@ -11,136 +11,71 @@ import styled from 'styled-components';
 
 // Styled Components
 const PageWrapper = styled.div`
-  font-family: Arial, sans-serif;
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 `;
 
 const BackButton = styled.button`
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid rgba(255,255,255,0.04);
+  padding: 8px 14px;
+  font-size: 14px;
   cursor: pointer;
-  border-radius: 4px;
-  margin-bottom: 20px;
+  border-radius: 10px;
+  margin-bottom: 18px;
+  transition: transform 0.12s ease, background 0.12s ease;
 
-  &:hover {
-    background-color: #45a049;
-  }
+  &:hover {transform:translateY(-2px);background:rgba(255,255,255,0.02)}
 `;
 
 const ThreadDetailWrapper = styled.div`
-  background-color: white;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(255,255,255,0.03);
 `;
 
 const ThreadCategory = styled.div`
-  background-color: #0077cc;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  font-size: 1rem;
-  display: inline-block;
-  margin-bottom: 1rem;
+  background:transparent;
+  color:var(--accent);
+  padding:0.35rem 0.7rem;
+  border-radius:999px;
+  font-size:0.95rem;
+  display:inline-block;
+  margin-bottom:0.75rem;
+  font-weight:600;
+  border:1px solid rgba(79,159,255,0.10);
 `;
 
 const ThreadTitle = styled.h1`
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 10px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color:var(--text);
 `;
 
 const ThreadMeta = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: left;
-  margin-bottom: 20px;
-  font-size: 0.875rem;
-  color: #777;
-
-  @media (max-width: 768px) {
-    font-size: 0.75rem;
-  }
-
-  @media (max-width: 500px) {
-    display: block;
-  }
+  display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:0.95rem;color:var(--muted)
 `;
 
-const ThreadOwner = styled.div`
-  display: flex;
-  align-items: center;
+const ThreadOwner = styled.div`display:flex;align-items:center;gap:0.6rem`;
 
-  @media (max-width: 500px) {
-    width: 100%;
-    margin-bottom: 1rem;
-  }
-`;
+const Avatar = styled.img`width:44px;height:44px;border-radius:999px;margin-right:8px;object-fit:cover`;
 
-const Avatar = styled.img`
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  margin-right: 8px;
-`;
+const ThreadDate = styled.span`font-size:13px;color:var(--muted);margin-left:8px`;
 
-const ThreadDate = styled.span`
-  font-size: 14px;
-  color: #888;
-  margin-right: 1rem;
+const ThreadBody = styled.div`font-size:1rem;margin:0.9rem 0;color:var(--text);line-height:1.6;white-space:pre-line`;
 
-  @media (max-width: 500px) {
-    width: 80%;
-  }
-`;
+const CommentsSection = styled.div`margin-top:36px;padding-top:18px;border-top:1px solid rgba(255,255,255,0.03)`;
 
-const ThreadBody = styled.div`
-  font-size: 1rem;
-  margin: 1rem 0;
-  color: #555;
-  line-height: 1.6;
-  white-space: pre-line;
-`;
+const LoginPrompt = styled.div`margin-top:20px;font-size:0.95rem;color:var(--muted);a{color:var(--accent);text-decoration:none}&:hover a{text-decoration:underline}`;
 
-const CommentsSection = styled.div`
-  margin-top: 40px;
-  padding-top: 20px;
-  border-top: 1px solid #ddd;
-`;
+const LoadingMessage = styled.div`text-align:center;padding:36px;color:var(--muted)`;
 
-const LoginPrompt = styled.div`
-  margin-top: 20px;
-  font-size: 0.95rem;
-
-  a {
-    color: #0077cc;
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-`;
-
-const LoadingMessage = styled.div`
-  text-align: center;
-  padding: 40px;
-`;
-
-const ErrorMessage = styled.div`
-  text-align: center;
-  color: red;
-  font-weight: bold;
-  padding: 40px;
-`;
+const ErrorMessage = styled.div`text-align:center;color:#ff8a8a;font-weight:700;padding:36px`;
 
 // Component
 function ThreadDetailPage() {

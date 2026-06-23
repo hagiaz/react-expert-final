@@ -5,20 +5,10 @@ import {Link} from 'react-router-dom';
 import ThreadList from '../components/ThreadList';
 
 const CreateThreadButton = styled(Link)`
-  text-decoration: none;
-  font-size: 1.75rem;
-  color: #333;
-  margin: 0;
-  transition: color 0.3s ease;
+  text-decoration: none;display:inline-flex;align-items:center;gap:.5rem;padding:.6rem .9rem;border-radius:10px;background:linear-gradient(90deg,var(--accent),#6fb1ff);color:#02223a;font-weight:700;box-shadow:var(--shadow);transition:transform .12s ease
 
-  &:hover {
-    color: #0077cc;
-    text-decoration: underline;
-  }
-
-  @media (max-width: 768px) {
-    font-size: 1.5rem;
-  }
+  &:hover{transform:translateY(-3px)}
+  @media (max-width:768px){font-size:1rem;padding:.5rem .75rem}
 `;
 
 function HomePage() {

@@ -1,37 +1,50 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+:root{
+  --bg: #0f1724;
+  --surface: #0b1220;
+  --card: #0f1724;
+  --muted: #98a0b3;
+  --text: #e6eef8;
+  --accent: #4f9fff;
+  --accent-2: #7ee0a8;
+  --glass: rgba(255,255,255,0.03);
+  --radius: 12px;
+  --shadow: 0 6px 18px rgba(2,6,23,0.6);
 }
 
-body {
-  background-color: #f7f7f7;
-  color: #333;
-  line-height: 1.6;
-  padding: 1rem;
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family: Inter, 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  background: radial-gradient(1200px 600px at 10% 10%, rgba(79,159,255,0.06), transparent 6%),
+              linear-gradient(180deg, #071123 0%, #071726 100%);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  padding:2rem;
 }
 
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 1rem;
-}
+.container{max-width:1024px;margin:0 auto;padding:1rem}
 
-.page-header {
-  text-align: center;
-  font-size: 24px;
-  font-weight: bold;
-}
+.page-header{font-size:1.5rem;font-weight:600;color:var(--text);text-align:center;margin-bottom:1rem}
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .form-group input {
-    padding: 0.5rem;
-    font-size: 0.9rem;
-  }
+/* Card utility */
+.card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:var(--radius);box-shadow:var(--shadow);padding:1rem}
 
-  .container {
-    padding: 1rem;
-  }
-}
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.6rem .9rem;border-radius:10px;border:none;cursor:pointer;font-weight:600}
+.btn-primary{background:linear-gradient(90deg,var(--accent),#6fb1ff);color:#02223a}
+.btn-ghost{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,0.04)}
+
+.muted{color:var(--muted)}
+
+/* Loading bar */
+.loading-bar{height:4px;background:linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));border-radius:999px;overflow:hidden}
+.loading-bar .loading-progress{height:100%;width:40%;background:linear-gradient(90deg,var(--accent),var(--accent-2));animation:progress 1.6s ease-in-out infinite}
+@keyframes progress{0%{transform:translateX(-120%)}50%{transform:translateX(20%)}100%{transform:translateX(120%)}}
+
+/* Responsive tweaks */
+@media (max-width:768px){.container{padding:0.75rem}.page-header{font-size:1.25rem}}
+
+/* Small utilities */
+.text-sm{font-size:0.9rem}
+.gap-1{gap:1rem}
+.avatar{width:40px;height:40px;border-radius:999px;object-fit:cover}

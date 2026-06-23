@@ -6,112 +6,48 @@ import parse from 'html-react-parser';
 import styled from 'styled-components';
 
 const ThreadWrapper = styled.div`
-  background-color: #fff;
-  padding: 1.5rem;
-  margin-bottom: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  padding: 1.25rem;
+  margin-bottom: 18px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(255,255,255,0.03);
+  transition: transform 0.14s ease, box-shadow 0.14s ease;
 
-  @media (max-width: 768px) {
-    padding: 1rem;
-  }
+  &:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(2,6,23,0.6)}
+
+  @media (max-width: 768px) {padding:0.9rem}
 `;
 
 const ThreadCategory = styled.div`
-  background-color: #0077cc;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  font-size: 1rem;
-  display: inline-block;
-  margin-bottom: 1rem;
-
-  @media (max-width: 768px) {
-    font-size: 0.875rem;
-    padding: 0.25rem 0.75rem;
-  }
+  background:transparent;color:var(--accent);padding:0.35rem 0.7rem;border-radius:999px;border:1px solid rgba(79,159,255,0.12);font-size:0.95rem;display:inline-block;margin-bottom:0.75rem;font-weight:600
 `;
 
 const ThreadTitleLink = styled(Link)`
   text-decoration: none;
 
-  h3 {
-    font-size: 1.75rem;
-    color: #333;
-    margin: 0;
-    transition: color 0.3s ease;
-
-    &:hover {
-      color: #0077cc;
-      text-decoration: underline;
-    }
-
-    @media (max-width: 768px) {
-      font-size: 1.5rem;
-    }
-  }
+  h3{font-size:1.35rem;color:var(--text);margin:0;line-height:1.15;transition:color 0.12s ease}
+  &:hover h3{color:var(--accent)}
 `;
 
 const ThreadBody = styled.div`
-  font-size: 1rem;
-  margin: 1rem 0 40px;
-  color: #555;
-  line-height: 1.6;
-  white-space: pre-line;
-
-  @media (max-width: 768px) {
-    font-size: 0.9rem;
-  }
+  font-size: 0.98rem;margin:0.75rem 0;color:var(--muted);line-height:1.5;white-space:pre-line;max-height:5.4rem;overflow:hidden
 `;
 
 const ThreadMeta = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: left;
-  margin-bottom: 20px;
-  font-size: 0.875rem;
-  color: #777;
-
-  @media (max-width: 768px) {
-    font-size: 0.75rem;
-  }
-
-  @media (max-width: 500px) {
-    display: block;
-  }
+  display:flex;justify-content:space-between;align-items:center;margin-top:0.5rem;font-size:0.9rem;color:var(--muted)
 `;
 
-const ThreadOwner = styled.div`
-  display: flex;
-  align-items: center;
+const ThreadOwner = styled.div`display:flex;align-items:center;gap:0.6rem`;
 
-  @media (max-width: 500px) {
-    width: 100%;
-    margin-bottom: 1rem;
-  }
-`;
-
-const Avatar = styled.img`
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  margin-right: 8px;
-`;
+const Avatar = styled.img`width:36px;height:36px;border-radius:999px;margin-right:8px;object-fit:cover`;
 
 const ThreadDetails = styled.div`
   display: flex;
   align-items: center;
 `;
 
-const ThreadDate = styled.span`
-  font-size: 14px;
-  color: #888;
-  margin-right: 1rem;
-
-  @media (max-width: 500px) {
-    width: 80%;
-  }
-`;
+const ThreadDate = styled.span`font-size:0.85rem;color:var(--muted);margin-right:1rem`;
 
 const ThreadComments = styled.span`
   margin-right: 1rem;

@@ -8,38 +8,42 @@ const NavbarWrapper = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #0077cc;
-  padding: 0.75rem 1rem;
-  color: white;
+  background: linear-gradient(90deg, rgba(79,159,255,0.12), rgba(126,224,168,0.06));
+  backdrop-filter: blur(6px);
+  padding: 0.9rem 1.25rem;
+  color: var(--text);
   font-size: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(255,255,255,0.03);
 
   @media (max-width: 768px) {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    gap: 0.75rem;
     padding: 1rem;
   }
 `;
 
 const Brand = styled.div`
   a {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: white;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text);
     text-decoration: none;
+    letter-spacing: -0.2px;
   }
 
   @media (max-width: 768px) {
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 0;
     text-align: center;
   }
 `;
 
 const Menu = styled.div`
   display: flex;
-  gap: 1rem;
+  gap: 0.75rem;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -50,15 +54,16 @@ const Menu = styled.div`
 `;
 
 const NavItem = styled(Link)`
-  color: white;
+  color: var(--text);
   text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  transition: background-color 0.3s;
+  padding: 0.5rem 0.9rem;
+  border-radius: 10px;
+  transition: background-color 0.18s ease, transform 0.12s ease;
   text-align: center;
 
   &:hover {
-    background-color: #005fa3;
+    transform: translateY(-2px);
+    background: rgba(255,255,255,0.02);
   }
 
   @media (max-width: 768px) {
@@ -69,15 +74,14 @@ const NavItem = styled(Link)`
 const LogoutButton = styled.button`
   all: unset;
   cursor: pointer;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  transition: background-color 0.3s;
+  color: var(--text);
+  padding: 0.5rem 0.9rem;
+  border-radius: 10px;
+  transition: background 0.18s ease, transform 0.12s ease;
   text-align: center;
+  border: 1px solid rgba(255,255,255,0.03);
 
-  &:hover {
-    background-color: #005fa3;
-  }
+  &:hover {transform:translateY(-2px);background:rgba(255,255,255,0.02)}
 `;
 
 function Navbar() {
