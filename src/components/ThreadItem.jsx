@@ -47,10 +47,19 @@ const ThreadDetails = styled.div`
   align-items: center;
 `;
 
-const ThreadDate = styled.span`font-size:0.85rem;color:var(--muted);margin-right:1rem`;
+const ThreadDate = styled.span`
+  font-size:0.85rem;
+  color:var(--muted);
+  margin-right:1rem;
+
+  @media (max-width: 768px) {text-align:right}
+`;
 
 const ThreadComments = styled.span`
   margin-right: 1rem;
+  font-size:0.85rem;
+
+  @media (max-width: 768px) {display:none}
 `;
 
 function ThreadItem({thread, owner}) {
